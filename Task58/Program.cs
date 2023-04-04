@@ -17,13 +17,33 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
+void MultiplicationMatrix(int[,] matrix1,int[,]matrix2,int[,]multiplicationMatrix)//произведение матриц
+{
+    for(int i=0; i<matrix1.GetLength(0);i++)
+    {
+        for(int j=0;j<matrix1.GetLength(0);j++)
+        {
+            for (int k=0;k<matrix1.GetLength(0);k++)
+            {
+                multiplicationMatrix[i,j]=multiplicationMatrix[i,j]+matrix1[i,k]*matrix2[k,j];    
+            }
+        }
+    }
+}
+
 Console.Clear();
 Console.Write("Введите размерность массива: ");
-int[] size = Console.ReadLine()!.Split().Select(x => int.Parse(x)).ToArray();
-int[,] matrix = new int[size[0], size[1]];
-InputMatrix(matrix);
+int size = Convert.ToInt32(Console.ReadLine());
+int[,] matrix1 = new int[size, size];
+InputMatrix(matrix1);
 Console.WriteLine("Матрица 1");
-PrintMatrix(matrix);
-InputMatrix(matrix);
+PrintMatrix(matrix1);
+int[,] matrix2 = new int[size, size];
+InputMatrix(matrix2);
 Console.WriteLine("Матрица 2");
-PrintMatrix(matrix);
+PrintMatrix(matrix2);
+int[,] multiplicationMatrix =new int[size,size];
+Console.WriteLine("Произведение матриц");
+MultiplicationMatrix(matrix1,matrix2,multiplicationMatrix);
+PrintMatrix(multiplicationMatrix);
+
